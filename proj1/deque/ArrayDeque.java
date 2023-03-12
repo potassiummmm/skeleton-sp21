@@ -19,7 +19,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     private void resize(int newCapacity) {
         T[] newItems = (T[]) new Object[newCapacity];
-        for (int i = head, j = 0;j < size; i = (i + 1) % capacity, j++) {
+        for (int i = head, j = 0; j < size; i = (i + 1) % capacity, j++) {
             newItems[j] = items[i];
         }
         head = 0;
@@ -30,7 +30,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     public void addFirst(T item) {
         if (size == capacity) {
-            resize(capacity * 2);
+            resize((int) (capacity * 1.1));
         }
         head = (head - 1 + capacity) % capacity;
         items[head] = item;

@@ -140,13 +140,14 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
             private Node<T> node = head;
             @Override
             public boolean hasNext() {
-                return node.next != null;
+                return node != tail;
             }
 
             @Override
             public T next() {
+                T val = node.value;
                 node = node.next;
-                return node.value;
+                return val;
             }
         };
     }
