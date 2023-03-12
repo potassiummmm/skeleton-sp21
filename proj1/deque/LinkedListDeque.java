@@ -137,7 +137,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
 
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            private Node<T> node;
+            private Node<T> node = head;
             @Override
             public boolean hasNext() {
                 return node.next != null;
