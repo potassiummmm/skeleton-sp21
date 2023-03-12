@@ -2,7 +2,7 @@ package deque;
 
 import java.util.Iterator;
 
-public class LinkedListDeque<T> implements Deque<T> {
+public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     public LinkedListDeque() {
         size = 0;
     }
@@ -11,7 +11,7 @@ public class LinkedListDeque<T> implements Deque<T> {
         T value;
         Node<T> pre, next;
 
-        public Node(T item) {
+        Node(T item) {
             value = item;
         }
 
@@ -32,8 +32,7 @@ public class LinkedListDeque<T> implements Deque<T> {
             head.next = head;
             head.pre = head;
             tail = head;
-        }
-        else {
+        } else {
             Node<T> newHead = new Node<T>(item);
             tail.next = newHead;
             newHead.next = head;
@@ -50,8 +49,7 @@ public class LinkedListDeque<T> implements Deque<T> {
             head.next = head;
             head.pre = head;
             tail = head;
-        }
-        else {
+        } else {
             Node<T> newTail = new Node<T>(item);
             tail.next = newTail;
             newTail.next = head;
@@ -89,8 +87,7 @@ public class LinkedListDeque<T> implements Deque<T> {
         if (size == 1) {
             head = null;
             tail = null;
-        }
-        else {
+        } else {
             Node<T> newHead = head.next;
             newHead.pre = tail;
             tail.next = newHead;
@@ -110,8 +107,7 @@ public class LinkedListDeque<T> implements Deque<T> {
         if (size == 1) {
             head = null;
             tail = null;
-        }
-        else {
+        } else {
             Node<T> newTail = tail.pre;
             newTail.next = head;
             head.pre = newTail;
@@ -141,11 +137,41 @@ public class LinkedListDeque<T> implements Deque<T> {
         return head.getRecursive(index);
     }
 
-//    public Iterator<T> iterator() {
-//
-//    }
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Node<T> node;
+            @Override
+            public boolean hasNext() {
+                return node.next != null;
+            }
 
-//    public boolean equals(Object o) {
-//
-//    }
+            @Override
+            public T next() {
+                node = node.next;
+                return node.value;
+            }
+        };
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof Deque)) {
+            return false;
+        }
+        Deque<T> ol = (Deque<T>) o;
+        if (ol.size() != this.size()) {
+            return false;
+        }
+        for (int i = 0; i < size; i++) {
+            if (!(ol.get(i).equals(this.get(i)))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

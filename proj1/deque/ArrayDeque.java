@@ -1,5 +1,7 @@
 package deque;
 
+import java.util.Iterator;
+
 public class ArrayDeque<T> implements Deque<T> {
     protected T[] items;
     protected int size;
@@ -19,7 +21,9 @@ public class ArrayDeque<T> implements Deque<T> {
         T[] newItems = (T[]) new Object[newCapacity];
         head = 0;
         tail = size - 1;
-        if (size >= 0) System.arraycopy(items, 0, newItems, 0, size);
+        if (size >= 0) {
+            System.arraycopy(items, 0, newItems, 0, size);
+        }
         items = newItems;
         capacity = newCapacity;
     }
@@ -51,7 +55,7 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     public void printDeque() {
-        for (int i = head; i != tail ; i = (i + 1) % capacity) {
+        for (int i = head; i != tail; i = (i + 1) % capacity) {
             System.out.print(items[i] + " ");
         }
         System.out.println();
@@ -82,5 +86,44 @@ public class ArrayDeque<T> implements Deque<T> {
             return null;
         }
         return items[(head + index) % capacity];
+    }
+
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private int pos = 0;
+            @Override
+            public boolean hasNext() {
+                return pos < size;
+            }
+
+            @Override
+            public T next() {
+                T item = get(pos);
+                pos++;
+                return item;
+            }
+        };
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof Deque)) {
+            return false;
+        }
+        Deque<T> oa = (Deque<T>) o;
+        if (oa.size() != this.size()) {
+            return false;
+        }
+        for (int i = 0; i < size; i += 1) {
+            if (!(oa.get(i).equals(this.get(i)))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -1,7 +1,5 @@
 package deque;
 
-import net.sf.saxon.functions.Compare;
-
 import java.util.Comparator;
 
 public class MaxArrayDeque<T> extends ArrayDeque<T> {
@@ -15,7 +13,7 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
             return null;
         }
         T maxElem = get(0);
-        for (int i = head + 1; i != tail ; i = (i + 1) % capacity) {
+        for (int i = head + 1; i != tail; i = (i + 1) % capacity) {
             System.out.print(items[i] + " ");
             if (comparator.compare(maxElem, items[i]) < 0) {
                 maxElem = items[i];
@@ -29,7 +27,7 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
             return null;
         }
         T maxElem = get(0);
-        for (int i = head + 1; i != tail ; i = (i + 1) % capacity) {
+        for (int i = head + 1; i != tail; i = (i + 1) % capacity) {
             System.out.print(items[i] + " ");
             if (c.compare(maxElem, items[i]) < 0) {
                 maxElem = items[i];
