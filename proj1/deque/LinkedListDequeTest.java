@@ -1,6 +1,10 @@
 package deque;
 
+import afu.org.checkerframework.checker.igj.qual.I;
 import org.junit.Test;
+
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 
@@ -15,7 +19,7 @@ public class LinkedListDequeTest {
     public void addIsEmptySizeTest() {
 
         // System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-        ArrayDeque<String> lld1 = new ArrayDeque<String>();
+        LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
 		assertTrue("A newly initialized LLDeque should be empty", lld1.isEmpty());
 		lld1.addFirst("front");
@@ -40,7 +44,7 @@ public class LinkedListDequeTest {
     public void addRemoveTest() {
 
         // System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-        ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
 		// should be empty
 		assertTrue("lld1 should be empty upon initialization", lld1.isEmpty());
 
@@ -58,7 +62,7 @@ public class LinkedListDequeTest {
     public void removeEmptyTest() {
 
         // System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-        ArrayDeque<Integer> lld1 = new ArrayDeque<>();
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
         lld1.addFirst(3);
 
         lld1.removeLast();
@@ -75,12 +79,12 @@ public class LinkedListDequeTest {
     }
 
     @Test
-    /* Check if you can create ArrayDeques with different parameterized types*/
+    /* Check if you can create LinkedListDeques with different parameterized types*/
     public void multipleParamTest() {
 
-        ArrayDeque<String>  lld1 = new ArrayDeque<String>();
-        ArrayDeque<Double>  lld2 = new ArrayDeque<Double>();
-        ArrayDeque<Boolean> lld3 = new ArrayDeque<Boolean>();
+        LinkedListDeque<String>  lld1 = new LinkedListDeque<String>();
+        LinkedListDeque<Double>  lld2 = new LinkedListDeque<Double>();
+        LinkedListDeque<Boolean> lld3 = new LinkedListDeque<Boolean>();
 
         lld1.addFirst("string");
         lld2.addFirst(3.14159);
@@ -92,11 +96,11 @@ public class LinkedListDequeTest {
     }
 
     @Test
-    /* check if null is return when removing from an empty ArrayDeque. */
+    /* check if null is return when removing from an empty LinkedListDeque. */
     public void emptyNullReturnTest() {
 
         // System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-        ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
 
         boolean passed1 = false;
         boolean passed2 = false;
@@ -110,7 +114,7 @@ public class LinkedListDequeTest {
     public void bigLLDequeTest() {
 
         // System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-        ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
         for (int i = 0; i < 1000000; i++) {
             lld1.addLast(i);
         }
