@@ -2,12 +2,12 @@ package deque;
 
 import java.util.Iterator;
 
-public class ArrayDeque<T> implements Deque<T> {
-    protected T[] items;
-    protected int size;
-    protected int capacity;
-    protected int head, tail;
-    static final int INIT_CAPACITY = 8;
+public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
+    private T[] items;
+    private int size;
+    private int capacity;
+    private int head, tail;
+    private static final int INIT_CAPACITY = 8;
 
     public ArrayDeque() {
         items = (T[]) new Object[INIT_CAPACITY];
@@ -17,7 +17,7 @@ public class ArrayDeque<T> implements Deque<T> {
         capacity = INIT_CAPACITY;
     }
 
-    public void resize(int newCapacity) {
+    private void resize(int newCapacity) {
         T[] newItems = (T[]) new Object[newCapacity];
         head = 0;
         tail = size - 1;
@@ -44,10 +44,6 @@ public class ArrayDeque<T> implements Deque<T> {
         tail = (tail + 1) % capacity;
         items[tail] = item;
         size++;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
     }
 
     public int size() {

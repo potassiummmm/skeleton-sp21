@@ -3,8 +3,9 @@ package deque;
 import java.util.Comparator;
 
 public class MaxArrayDeque<T> extends ArrayDeque<T> {
-    Comparator<T> comparator;
+    private Comparator<T> comparator;
     public MaxArrayDeque(Comparator<T> c) {
+        super();
         comparator = c;
     }
 
@@ -12,27 +13,25 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        T maxElem = get(0);
-        for (int i = head + 1; i != tail; i = (i + 1) % capacity) {
-            System.out.print(items[i] + " ");
-            if (comparator.compare(maxElem, items[i]) < 0) {
-                maxElem = items[i];
+        T maxItem = get(0);
+        for (T i : this) {
+            if (comparator.compare(i, maxItem) > 0) {
+                maxItem = i;
             }
         }
-        return maxElem;
+        return maxItem;
     }
 
     public T max(Comparator<T> c) {
         if (isEmpty()) {
             return null;
         }
-        T maxElem = get(0);
-        for (int i = head + 1; i != tail; i = (i + 1) % capacity) {
-            System.out.print(items[i] + " ");
-            if (c.compare(maxElem, items[i]) < 0) {
-                maxElem = items[i];
+        T maxItem = get(0);
+        for (T i : this) {
+            if (c.compare(i, maxItem) > 0) {
+                maxItem = i;
             }
         }
-        return maxElem;
+        return maxItem;
     }
 }
