@@ -34,25 +34,4 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         }
         return maxItem;
     }
-
-    public static void main(String[] args) {
-        MaxArrayDeque<Integer> maxArrayDeque = new MaxArrayDeque<>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return Integer.compare(o1, o2);
-            }
-        });
-        maxArrayDeque.addFirst(0);
-        maxArrayDeque.addFirst(1);
-        maxArrayDeque.addFirst(2);
-        maxArrayDeque.addFirst(3);
-        maxArrayDeque.addFirst(4);
-        maxArrayDeque.addFirst(5);
-        maxArrayDeque.addFirst(6);
-        maxArrayDeque.addFirst(7);
-        maxArrayDeque.addFirst(8);
-        maxArrayDeque.addFirst(9);
-        int a = maxArrayDeque.removeLast();
-        int b;
-    }
 }

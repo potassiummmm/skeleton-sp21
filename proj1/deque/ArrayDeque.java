@@ -30,7 +30,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     public void addFirst(T item) {
         if (size == capacity) {
-            resize(capacity + 10);
+            resize(capacity * 2);
         }
         head = (head - 1 + capacity) % capacity;
         items[head] = item;
@@ -61,6 +61,9 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (isEmpty()) {
             return null;
         }
+        if ((size < capacity / 4) && (size > 4)) {
+            resize(capacity / 4);
+        }
         T removed = items[head];
         head = (head + 1) % capacity;
         size--;
@@ -70,6 +73,9 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     public T removeLast() {
         if (isEmpty()) {
             return null;
+        }
+        if ((size < items.length / 4) && (size > 4)) {
+            resize(items.length / 4);
         }
         T removed = items[(tail + capacity) % capacity];
         tail = (tail - 1 + capacity) % capacity;
